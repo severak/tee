@@ -59,10 +59,10 @@
 
                     <div class="post-description">
 
-			<h3>Odjezd Departure Abfarth</h3>
+			<h3>Odjezd | Departure | Abfarth</h3>
 
 			<table class="pure-table pure-table-horizontal pragotron">
-			<tr><th></th><th>Kam To Nach</th><th>Přes Via Über</th><th></th></tr>
+			<tr><th></th><th>Kam | To | Nach</th><th>Přes | Via | Über</th><th></th></tr>
 			<?php foreach ($departures as $trip): ?>
 			<tr>
 			<td>
@@ -87,10 +87,10 @@
 			
 			</table>
 
-			<h3>Příjezd Arrival Ankunft</h3>
+			<h3>Příjezd | Arrival | Ankunft</h3>
 
 			<table class="pure-table pure-table-horizontal pragotron">
-			<tr><th></th><th>Odkud  From Ab</th><th>Přes Via Über</th><th></th></tr>
+			<tr><th></th><th>Odkud  | From | Ab</th><th>Přes | Via | Über</th><th></th></tr>
 			<?php foreach ($arrivals as $trip): ?>
 			<tr>
 			<td>
