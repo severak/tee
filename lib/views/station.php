@@ -79,6 +79,12 @@
 			</td>
 			</tr>
 			<?php endforeach; ?>
+			
+			<?php if (empty($departures)): ?>
+			<tr><td></td><td></td><td></td><td></td></tr>
+			<?php endif; ?>
+			
+			
 			</table>
 
 			<h3>Příjezd Arrival Ankunft</h3>
@@ -101,6 +107,12 @@
 			</td>
 			</tr>
 			<?php endforeach; ?>
+			
+			<?php if (empty($arrivals)): ?>
+			<tr><td></td><td></td><td></td><td></td></tr>
+			<?php endif; ?>
+			
+			
 			</table>
 
 
