@@ -45,6 +45,12 @@ h3 {
 .brand-title {
     text-transform: uppercase;
 }
+
+.brand-title a {
+	color: #fff;
+	text-decoration: none;
+}
+
 .brand-tagline {
     font-weight: 300;
     color: rgb(176, 202, 219);
@@ -194,6 +200,7 @@ h3 {
 
 .pragotron {
 	width: 100%;
+	table-layout: fixed;
 }
 
 .pragotron-to {

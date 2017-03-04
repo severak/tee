@@ -37,9 +37,12 @@ Flight::route('/station/@slug', function($slug){
 		Flight::notFound();
 	}
 	
-	$departures = $db->from('trips')->where('from_id', $station['id'])->select()->many();
-	$arrivals = $db->from('trips')->where('to_id', $station['id'])->select()->many();
+	$vias = $db->from('trip_stations')->where('station_id', $station['id'])->select()->many();
+	$vias = array_column($vias, 'trip_id');
 	
+	$departures = $db->from('trips')->where('from_id', $station['id'])->where('|id @', $vias)->select()->many();
+	$arrivals = $db->from('trips')->where('to_id', $station['id'])->select()->many();
+
 
 	Flight::render('station', [
 		'station' => $station,
