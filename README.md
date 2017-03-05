@@ -2,7 +2,7 @@
 
 Virtual counterpart to real [Trans Europ Express](https://en.wikipedia.org/wiki/Trans_Europ_Express).
 
-**Work in progress.** See preview at [tee.svita.cz](http://tee.svita.cz/trip/2).
+**Work in progress.** See preview at [tee.svita.cz](http://tee.svita.cz/train/l7f_A7MdWZ4).
 
 ## Credits
 
