@@ -38,6 +38,10 @@ h3 {
     color: #fff;
 }
 
+.sidebar hr {
+	border: 1px solid rgb(176, 202, 219);
+}
+
 .brand-title,
 .brand-tagline {
     margin: 0;

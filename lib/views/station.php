@@ -48,7 +48,8 @@
         <div>
             <!-- A wrapper for all the blog posts -->
             <div class="posts">
-                
+                <h1 class="content-subhead">Stanice | Station | Station</h1>
+		
                 <!-- A single blog post -->
                 <section class="post">
                     <header class="post-header">

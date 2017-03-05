@@ -38,6 +38,9 @@
             <h1 class="brand-title"><a href="/">Trans Europ Express</a></h1>
             <h2 class="brand-tagline">your virtual travel agency</h2>
 
+		<hr>
+		<p>Trasa | Route | Strecke</p>
+
             <nav class="nav">
                 <ul class="nav-list">
                     <?php foreach ($stations as $slug=>$name):?>
@@ -54,6 +57,7 @@
         <div>
             <!-- A wrapper for all the blog posts -->
             <div class="posts">
+		<h1 class="content-subhead">Vlak | Train | Zug</h1>
                 
                 <!-- A single blog post -->
                 <section class="post">
