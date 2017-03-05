@@ -75,7 +75,7 @@
 				<?php echo $trip['via']; ?>
 			</td>
 			<td>
-				<a class="pure-button pure-button-primary" href="/trip/<?php echo $trip['id']; ?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> travel</a>
+				<a class="pure-button pure-button-primary" href="/train/<?php echo $trip['youtube_id']; ?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> travel</a>
 			</td>
 			</tr>
 			<?php endforeach; ?>
@@ -103,7 +103,7 @@
 				<?php echo $trip['via']; ?>
 			</td>
 			<td>
-				<a class="pure-button pure-button-primary" href="/trip/<?php echo $trip['id']; ?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> travel</a>
+				<a class="pure-button pure-button-primary" href="/train/<?php echo $trip['youtube_id']; ?>"><i class="fa fa-paper-plane" aria-hidden="true"></i> travel</a>
 			</td>
 			</tr>
 			<?php endforeach; ?>

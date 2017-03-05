@@ -54,14 +54,16 @@ Flight::route('/station/@slug', function($slug){
 
 
 // trip
-Flight::route('/trip/@id', function($tripId){
+Flight::route('/train/@slug', function($tripSlug){
 	$db = Flight::db();
 	
-	$trip = $db->from('trips')->where('id', $tripId)->where('is_visible', 1)->select()->one();
+	$trip = $db->from('trips')->where('youtube_id', $tripSlug)->where('is_visible', 1)->select()->one();
 	
 	if (empty($trip)) {
 		Flight::notFound();
 	}
+	
+	$tripId = $trip['id'];
 	
 	$channel = null;
 	if ($trip['channel_id']) {
