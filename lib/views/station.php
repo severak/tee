@@ -38,7 +38,7 @@
         <div class="header">
 		<img src="/st/tee-logo-200.png">
             <h1 class="brand-title"><a href="/">Trans Europ Express</a></h1>
-            <h2 class="brand-tagline">your virtual travel guide</h2>
+            <h2 class="brand-tagline">your virtual travel agency</h2>
 
             
         </div>
@@ -123,11 +123,7 @@
 
             <div class="footer">
                 <div class="pure-menu pure-menu-horizontal">
-                    <ul>
-                        <li class="pure-menu-item"><a href="http://purecss.io/" class="pure-menu-link">About</a></li>
-                        <li class="pure-menu-item"><a href="http://twitter.com/yuilibrary/" class="pure-menu-link">Twitter</a></li>
-                        <li class="pure-menu-item"><a href="http://github.com/yahoo/pure/" class="pure-menu-link">GitHub</a></li>
-                    </ul>
+                    <endora>
                 </div>
             </div>
         </div>

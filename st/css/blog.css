@@ -62,8 +62,8 @@ h3 {
     list-style: none;
 }
 .nav-item {
-    display: inline-block;
-    *display: inline;
+    display: block;
+    *display: block;
     zoom: 1;
 }
 .nav-item a {
