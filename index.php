@@ -51,6 +51,22 @@ Flight::route('/station/@slug', function($slug){
 	]);
 });
 
+// create trip
+Flight::route('/train/add', function(){
+	$db = Flight::db();
+	$request = Flight::request();
+	
+	$form = new severak\form;
+	
+	if ($request->method=='POST') {
+		$form->values = $request->data;
+		$form->error['youtube_id'] = 'kk';
+	}
+
+	Flight::render('trip_create', [
+		'form' => $form,
+	]);
+});
 
 
 // trip
