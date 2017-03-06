@@ -59,13 +59,26 @@
 		    
 		    <label>Youtube ID</label>
 		    <?= $form->text('youtube_id')->required(); ?>
-		    <?= $form->getError('youtube_id', '<span class="error">:message</span'); ?>
+		    <?= $form->showError('youtube_id'); ?>
+		    
+		    <label>Odkud | From | Ab</label>
+		    <?= $form->text('from_name')->required(); ?>
+		    <?= $form->showError('from_name'); ?>
+		    
+		    
+		    <label>Kam | To | Nach</label>
+		    <?= $form->text('to_name')->required(); ?>
+		    <?= $form->showError('to_name'); ?>
+		    
+		    <label>Přes | Via | Über</label>
+		    <?= $form->textarea('via')->rows(2); ?>
+		    
 		    
 		    <?= $form->submit('Add')->addClass('pure-button pure-button-primary'); ?>
 		    
 		    <?= $form->close(); ?>
 
-                    
+                    <?php dump($form); ?>
                 </section>
             </div>
 

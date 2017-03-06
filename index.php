@@ -51,6 +51,8 @@ Flight::route('/station/@slug', function($slug){
 	]);
 });
 
+use severak\rules as rulez;
+
 // create trip
 Flight::route('/train/add', function(){
 	$db = Flight::db();
@@ -58,9 +60,27 @@ Flight::route('/train/add', function(){
 	
 	$form = new severak\form;
 	
+	$form->rule('youtube_id', rulez::required(), 'Field is required.');
+	
+	$form->rule('youtube_id', function($v, $f) use ($db) { 
+		return $db->from('trips')->where('youtube_id', $v)->count() == 0; // no duplicates found
+	}, 'Video is already in database.');
+	
+	$form->rule('from_name', rulez::required(), 'Field is required.');
+	$form->rule('to_name', rulez::required(), 'Field is required.');
+	
 	if ($request->method=='POST') {
-		$form->values = $request->data;
-		$form->error['youtube_id'] = 'kk';
+		$post = $request->data->getData();
+		
+		$match = [];
+		if (!empty($post['youtube_id']) && preg_match('%(?:youtube(?:-nocookie)?\.com/(?:[^/]+/.+/|(?:v|e(?:mbed)?)/|.*[?&]v=)|youtu\.be/)([^"&?/ ]{11})%i', $post['youtube_id'], $match)) {
+			$post['youtube_id'] = $match[1];
+		}
+		
+		$form->values = $post;
+		if ($form->validate()) {
+			// tada, save + redirect
+		}
 	}
 
 	Flight::render('trip_create', [
