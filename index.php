@@ -51,6 +51,22 @@ Flight::route('/station/@slug', function($slug){
 	]);
 });
 
+// station search
+Flight::route('/ajax/search/station', function(){
+	$db = Flight::db();
+	
+	$search = $_GET['s'];
+	$found = $db->from('stations_csv')->where('name %', '%' . $search. '%')->where('is_city', 'f')->sortAsc('name')->select()->many();
+	
+	$pairs = [];
+	foreach ($found as $item) {
+		$pairs[] = ['id'=>$item['id'], 'name'=>$item['name'] ];
+	}
+	
+	
+	Flight::json($pairs);
+});
+
 use severak\rules as rulez;
 
 // create trip
@@ -67,7 +83,9 @@ Flight::route('/train/add', function(){
 	}, 'Video is already in database.');
 	
 	$form->rule('from_name', rulez::required(), 'Field is required.');
+	$form->rule('from_id', rulez::required(), 'Field is required.');
 	$form->rule('to_name', rulez::required(), 'Field is required.');
+	$form->rule('to_id', rulez::required(), 'Field is required.');
 	
 	if ($request->method=='POST') {
 		$post = $request->data->getData();
