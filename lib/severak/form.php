@@ -51,7 +51,8 @@ implements OldInputInterface, ErrorStoreInterface
 		$valid = true;
 		foreach ($this->_rules as $name => $rules) {
 			foreach ($rules as $rule) {
-				$passed = call_user_func_array($rule['check'], [$this->values[$name], $this->values]);	
+				$value = isset($this->values[$name]) ? $this->values[$name] : null;
+				$passed = call_user_func_array($rule['check'], [$value, $this->values]);	
 				if (empty($passed)) {
 					$this->errors[$name] = $rule['message'];
 					$valid = false;
