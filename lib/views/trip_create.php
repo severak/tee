@@ -202,22 +202,27 @@ function htmlspecialchars (string, quoteStyle, charset, doubleEncode) {
   return string
 }
 
+function stationSearchHandler(prefix)
+{
+	$('input[name='+prefix+'_name]').on('blur', function() {
 
-$(document).ready(function() {
-	
-	$('input[name=from_name]').on('blur', function() {
-
-	var searchFor = $('input[name=from_name]').val();
+	var searchFor = $('input[name='+prefix+'_name]').val();
 	
 	var found = $.getJSON('/ajax/search/station', {s: searchFor}, function(data) {
 		var opts = '';
 		array_walk(data, function(val, key){
 			opts += '<option value="' + htmlspecialchars(val.id) + '">' + htmlspecialchars(val.name) + '</option>'; 
 		});
-		$('select[name=from_id]').html(opts);
+		$('select[name='+prefix+'_id]').html(opts);
 	});
-});
+	
+	});
+}
 
+
+$(document).ready(function() {
+	stationSearchHandler('from');
+	stationSearchHandler('to');
 });
 
 
