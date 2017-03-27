@@ -56,6 +56,11 @@ Flight::route('/ajax/search/station', function(){
 	$db = Flight::db();
 	
 	$search = $_GET['s'];
+	
+	if (empty($search)) {
+		Flight::json([]);
+	}
+	
 	$found = $db->from('stations_csv')->where('name %', '%' . $search. '%')->where('is_city', 'f')->sortAsc('name')->select()->many();
 	
 	$pairs = [];
@@ -97,7 +102,36 @@ Flight::route('/train/add', function(){
 		
 		$form->values = $post;
 		if ($form->validate()) {
-			// tada, save + redirect
+			$db->from('trips')
+			->insert([
+				'youtube_id' => $post['youtube_id'],
+				'train_name' => 'Os',
+				'from_id' => $post['from_id'],
+				'to_id' => $post['to_id'],
+				'from_name' => $post['from_name'],
+				'to_name' => $post['to_name'],
+				'via' => $post['via'],
+				'is_visible' => 0
+			])->execute();
+			
+			// todo channel_id
+			
+			if ($db->insert_id>0) {
+				$tripId = $db->insert_id;
+				
+				foreach ($post['via_id'] as $ord=>$stopId) {
+					$db->from('trip_stations')->insert([
+						'trip_id' => $tripId,
+						'station_id' => $stopId,
+						'time_offset' => $post['via_time'][$ord],
+						'ord' => $ord
+					])->execute();
+				}
+				
+				
+				Flight::redirect('/trip/' . $post['youtube_id']);
+			}
+		
 		}
 	}
 

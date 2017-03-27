@@ -254,14 +254,21 @@ $(document).ready(function() {
 		
 		$.getJSON('/ajax/search/station', {s: $('input[name=search_via]').val() }, function(data) {
 			var opts = '';
+			
+			if (data.length==0) {
+				return;
+			}
+			
 			array_walk(data, function(val, key){
 				opts += '<option value="' + htmlspecialchars(val.id) + '">' + htmlspecialchars(val.name) + '</option>'; 
 			});
-			console.log(newStop.children('select'));
+			//console.log(newStop.children('select'));
 			newStop.find('select').html(opts);
+			
+			$('.stops').append(newStop);
 		});
 		
-		$('.stops').append(newStop);
+		
 		
 		event.preventDefault();
 	});
