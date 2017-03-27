@@ -61,6 +61,11 @@
 		    <?= $form->text('youtube_id')->required(); ?>
 		    <?= $form->showError('youtube_id'); ?>
 		    
+		    
+		    <label>Název vlaku | Train name | Zug name</label>
+		    <?= $form->text('train_name'); ?>
+		    <?= $form->showError('train_name'); ?>
+		    
 		    <label>Odkud | From | Ab</label>
 		    <?= $form->text('from_name')->required(); ?>
 		    <?= $form->showError('from_name'); ?>

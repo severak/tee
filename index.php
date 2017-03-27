@@ -105,13 +105,13 @@ Flight::route('/train/add', function(){
 			$db->from('trips')
 			->insert([
 				'youtube_id' => $post['youtube_id'],
-				'train_name' => 'Os',
+				'train_name' => $post['train_name'],
 				'from_id' => $post['from_id'],
 				'to_id' => $post['to_id'],
 				'from_name' => $post['from_name'],
 				'to_name' => $post['to_name'],
 				'via' => $post['via'],
-				'is_visible' => 0
+				'is_visible' => 1
 			])->execute();
 			
 			// todo channel_id
@@ -124,12 +124,12 @@ Flight::route('/train/add', function(){
 						'trip_id' => $tripId,
 						'station_id' => $stopId,
 						'time_offset' => $post['via_time'][$ord],
-						'ord' => $ord
+						'ord' => $ord+1
 					])->execute();
 				}
 				
 				
-				Flight::redirect('/trip/' . $post['youtube_id']);
+				Flight::redirect('/train/' . $post['youtube_id']);
 			}
 		
 		}
