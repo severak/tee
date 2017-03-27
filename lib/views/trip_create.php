@@ -112,7 +112,6 @@
 		    
 		    <?= $form->close(); ?>
 
-                    <?php dump($form); ?>
                 </section>
             </div>
 

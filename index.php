@@ -151,7 +151,7 @@ Flight::route('/train/@slug', function($tripSlug){
 		Flight::notFound();
 	}
 	
-	$currentStation = $_GET['from'];
+	$currentStation = isset($_GET['from']) ? $_GET['from'] : '';
 	$timeOffset = '';
 	
 	$tripId = $trip['id'];
