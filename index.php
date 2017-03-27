@@ -151,6 +151,9 @@ Flight::route('/train/@slug', function($tripSlug){
 		Flight::notFound();
 	}
 	
+	$currentStation = $_GET['from'];
+	$timeOffset = '';
+	
 	$tripId = $trip['id'];
 	
 	$channel = null;
@@ -164,7 +167,7 @@ Flight::route('/train/@slug', function($tripSlug){
 	$stations[ $fromStation['slug'] ] = $fromStation['name'];
 	
 	$innerStations = $db
-		->select(['name', 'slug'])
+		->select(['name', 'slug', 'time_offset'])
 		->from('trip_stations')
 		->join('stations_csv', array('station_id' => 'stations_csv.id'))
 		->where('trip_id', $tripId)
@@ -173,6 +176,12 @@ Flight::route('/train/@slug', function($tripSlug){
 		->many();
 		
 	foreach ($innerStations as $st) {
+		if ($st['slug']==$currentStation) {
+			list($mm, $ss) = explode(':', $st['time_offset']);
+			$timeOffset = '?start=' . (($mm*60) + $ss);
+		}
+	
+	
 		$stations[ $st['slug'] ] = $st['name'];
 	}
 	
@@ -182,7 +191,9 @@ Flight::route('/train/@slug', function($tripSlug){
 	Flight::render('trip', [
 		'trip' => $trip,
 		'channel' => $channel,
-		'stations' => $stations
+		'stations' => $stations,
+		'currentStation' => $currentStation,
+		'timeOffset' => $timeOffset
 	]);
 });
 

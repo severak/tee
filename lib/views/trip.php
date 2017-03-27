@@ -37,7 +37,8 @@
 		<img src="/st/tee-logo-200.png">
             <h1 class="brand-title"><a href="/">Trans Europ Express</a></h1>
             <h2 class="brand-tagline">your virtual travel agency</h2>
-
+	    
+	    
 		<hr>
 		<p>Trasa | Route | Strecke</p>
 
@@ -45,8 +46,8 @@
                 <ul class="nav-list">
                     <?php foreach ($stations as $slug=>$name):?>
 		    <li class="nav-item">
-                        <a class="pure-button" href="/station/<?php echo $slug; ?>"><?php echo $name; ?></a>
-                    </li>
+                        <a class="pure-button <?= ($slug==$currentStation ? 'pure-button-active' : ''); ?>" href="/station/<?php echo $slug; ?>" ><?php echo $name; ?></a>
+		    </li>
                     <?php endforeach; ?>
                 </ul>
             </nav>
@@ -78,7 +79,7 @@
 <br>
 <div class="videoWrapper">
 <iframe width="560" height="315" src=" 
-https://www.youtube.com/embed/<?php echo $trip['youtube_id']; ?>" frameborder="0" 
+https://www.youtube.com/embed/<?php echo $trip['youtube_id'] . $timeOffset; ?>" frameborder="0" 
 allowfullscreen></iframe>
 </div>
 
