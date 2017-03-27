@@ -82,6 +82,26 @@
 		    <label>Přes | Via | Über</label>
 		    <?= $form->textarea('via')->rows(2); ?>
 		    
+		    <div class="stops">
+		    <div class="stop pure-g">
+			<div class="pure-u-4-5">
+				<select name="via_id[]"></select>
+			</div>
+			<div class="pure-u-1-5">
+				<input name="via_time[]" placeholder="2:15"/>
+			</div>
+		    </div>
+		    </div>
+		    
+		    <div class="pure-g">
+		    <div class="pure-u-4-5">
+		    <input name="search_via">
+		    </div>
+		    <div class="pure-u-1-5">
+		    <button class="pure-button" id="addStation">Search and add station</button>
+		    </div>
+		    </div>
+		    
 		    
 		    <?= $form->submit('Add')->addClass('pure-button pure-button-primary'); ?>
 		    
@@ -220,9 +240,31 @@ function stationSearchHandler(prefix)
 }
 
 
+
 $(document).ready(function() {
+	var stopProto = $('.stops .stop').clone();
+	$('.stops .stop').remove();
+	// console.log(stopProto);
 	stationSearchHandler('from');
 	stationSearchHandler('to');
+	
+	$('#addStation').on('click', function(event) {
+		var newStop = stopProto.clone();
+		// console.log(newStop);
+		
+		$.getJSON('/ajax/search/station', {s: $('input[name=search_via]').val() }, function(data) {
+			var opts = '';
+			array_walk(data, function(val, key){
+				opts += '<option value="' + htmlspecialchars(val.id) + '">' + htmlspecialchars(val.name) + '</option>'; 
+			});
+			console.log(newStop.children('select'));
+			newStop.find('select').html(opts);
+		});
+		
+		$('.stops').append(newStop);
+		
+		event.preventDefault();
+	});
 });
 
 
